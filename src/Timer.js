@@ -58,6 +58,8 @@ export class Timer {
   }
 
   pause() {
+    this.status(Status.Pause);
+
     if (this.timer != null) {
       clearInterval(this.timer);
       this.timer = null;
@@ -67,15 +69,14 @@ export class Timer {
     this.total += this.endTime() - this.startTime();
     this.startTime(0);
     this.endTime(0);
-
-    this.status(Status.Pause);
   }
 
   clear() {
-    this.startTime(0);
-    this.endTime(0);
-    this.total = 0;
     this.status(Status.Stop);
+
+    this.total = 0;
+    this.endTime(0);
+    this.startTime(0);
   }
 }
 
