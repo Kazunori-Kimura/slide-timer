@@ -30,11 +30,11 @@ export class Timer {
     this.timer = null;
 
     // computed properties
-    this.time = ko.computed(() => {
+    this.time = ko.pureComputed(() => {
       let ms = this.endTime() - this.startTime() + this.total;
       ms = ms < 0 ? 0 : ms;
       return _format(ms);
-    });
+    }).extend({ notify: 'always' });
     this.isStoped = ko.computed(() => {
       return this.status() == Status.Stop;
     });
@@ -54,7 +54,7 @@ export class Timer {
 
     this.timer = setInterval(() => {
       this.endTime(Date.now());
-    }, 500);
+    }, 200);
   }
 
   pause() {
@@ -72,9 +72,8 @@ export class Timer {
   }
 
   clear() {
-    this.status(Status.Stop);
-
     this.total = 0;
+    this.status(Status.Stop);
     this.endTime(0);
     this.startTime(0);
   }
@@ -100,14 +99,14 @@ export const timerView = `
 </div>
 <!-- /ko -->
 <!-- ko if: isPause() -->
-<div class="col-xs-11">
+<div class="col-xs-10">
   <button class="btn btn-warning btn-lg btn-block"
     data-bind="click: start">
     <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
     <span data-bind="text: time"></span>
   </button>
 </div>
-<div class="col-xs-1">
+<div class="col-xs-2">
   <button class="btn btn-danger btn-lg btn-block"
     data-bind="click: clear">
     <span class="glyphicon glyphicon-remove-sign"></span>

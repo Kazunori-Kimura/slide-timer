@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Document</title>
+  <link rel="stylesheet" href="style/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style/css/pdf-slide.css">
+  <link rel="stylesheet" href="style/css/base.css">
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div data-bind="component:'timer'"></div>
+    </div>
+    <div class="row">
+      <div id="pdf-container" class="pdf-page"></div>
+      <div class="controls">
+        <div id="js-prev" class="arrow prev"></div>
+        <div id="js-next" class="arrow next"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="bundle.js"></script>
+</body>
+</html>
